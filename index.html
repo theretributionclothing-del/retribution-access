@@ -137,7 +137,7 @@
       <p class="big">Join the list. Get notified when it’s ready.</p>
 
       <!-- Netlify Forms -->
-      <form name="access-list" method="POST" data-netlify="true" action="/success.html">
+      <form name="access-list" method="POST" data-netlify="true" action="/?success.html">
         <input type="hidden" name="form-name" value="retribution-access" />
         <input name="email" type="email" placeholder="Email address" required />
 
@@ -147,6 +147,10 @@
         </label>
 
         <button type="submit">GET ACCESS</button>
+        <div id="successBanner" style="display:none; margin: 12px 0; padding: 12px; border:1px solid rgba(255,255,255,.18); border-radius:12px; background:rgba(255,255,255,.06);">
+  Access confirmed. You’re on the list.
+</div>
+
       </form>
 
       <div class="fine">
@@ -160,5 +164,14 @@
       </div>
     </section>
   </main>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("success") === "true") {
+    document.getElementById("successBanner").style.display = "block";
+    // optional: remove the query after showing
+    window.history.replaceState({}, document.title, "/");
+  }
+</script>
+
 </body>
 </html>
